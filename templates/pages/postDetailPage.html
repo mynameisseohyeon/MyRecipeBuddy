@@ -6,10 +6,11 @@
     <title>MyDietBuddy</title>
   </head>
   <body>
+    <h1>게시판 상세 페이지</h1>
     {% if post_list %} {% for post_content in post_list %}
     <hr />
     <h3>{{ post_content.title }}</h3>
-    <h5>{{ post_content.post_content }}</h5>
+    <h5>{{ post_content.content }}</h5>
     {% endfor %} {% else %}
     <p>content가 없습니다.</p>
     {% endif %}
