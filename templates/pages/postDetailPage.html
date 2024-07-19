@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>MyDietBuddy</title>
+  </head>
+  <body>
+    {% if post_list %} {% for post_content in post_list %}
+    <hr />
+    <h3>{{ post_content.title }}</h3>
+    <h5>{{ post_content.post_content }}</h5>
+    {% endfor %} {% else %}
+    <p>content가 없습니다.</p>
+    {% endif %}
+  </body>
+</html>

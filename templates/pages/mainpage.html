@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>MyDietBuddy</title>
     <!-- <link rel="stylesheet" href="/css//main.css"> -->
-</head>
-<body>
+  </head>
+  <body>
     <header>
         <div class="logo">MyDietBuddy</div>
         <nav>
             <ul>
                 <li><a href="#about">회사 소개</a></li>
-                <li><a href="#gallery">레시피 게시판</a></li>
+                <li><a href="{% url 'postDetailPage' %}">>레시피 게시판</a></li>
                 <li><a href="#testimonials">고객 후기</a></li>
                 <li><a href="#contact">문의하기</a></li>
                 <li><a href="#login">로그인</a></li>
@@ -79,6 +79,8 @@
         </section>
     </main>
 
+    
+
     <footer>
         <p>&copy; 2024 MyDietBuddy. All rights reserved.</p>
         <div class="social-links">
@@ -91,5 +93,5 @@
             <a href="#">개인정보처리방침</a>
         </div>
     </footer>
-</body>
+  </body>
 </html>
