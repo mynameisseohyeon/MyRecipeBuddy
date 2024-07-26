@@ -65,12 +65,9 @@
               >
             </li>
             <li class="nav-item">
-              <a class="nav-link me-lg-3" href="#testimonials">고객 후기</a>
-            </li>
-            <li class="nav-item">
               <a class="nav-link me-lg-3" href="#contact">문의하기</a>
             </li>
-            <!-- 로그인 여부 표시 -->
+            <!-- 로그인 -->
             <!-- 로그인 시 login이라는 표시와 함께 이메일 표시 / 로그아웃 시 logout 표시-->
             {% if user.is_authenticated %}
             <li class="nav-item">
@@ -83,7 +80,7 @@
               <a class="nav-link me-lg-3" href="{% url 'loginPage' %}">login</a>
             </li>
             {% endif %}
-            <!-- 로그인 여부 표시 -->
+            <!-- 로그인-->
           </ul>
           <button
             class="btn btn-primary rounded-pill px-3 mb-2 mb-lg-0"
