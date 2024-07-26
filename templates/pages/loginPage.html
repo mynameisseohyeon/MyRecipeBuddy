@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/static/styles.css" rel="stylesheet" />
+    <style>
+      #loginpage {
+        padding-top: 56px; /* or the height of your navbar */
+      }
+
+      /* Alternatively, you can target a specific content container */
+      #main-content {
+        margin-top: 80px; /* or the height of your navbar */
+      }
+    </style>
+    <script>
+      // JavaScript function to log the message to the console
+      function logLoginAttempt() {
+        console.log("사용자가 로그인을 시도하였습니다.");
+      }
+    </script>
+  </head>
+  <body id="page-top loginpage">
+    {% include "pages/header.html" %}
+    <div id="main-content">
+      {% block content %}
+      <h2>Login</h2>
+      {% if messages %} {% for message in messages %}
+      <p>{{ message }}</p>
+      {% endfor %} {% endif %}
+      <form
+        method="post"
+        action="{% url 'loginPage' %}"
+        onsubmit="logLoginAttempt()"
+      >
+        {% csrf_token %}
+        <table>
+          <tr>
+            <td>{{ form.email.label_tag }}</td>
+            <td>{{ form.email }}</td>
+          </tr>
+          <tr>
+            <td>{{ form.password.label_tag }}</td>
+            <td>{{ form.password }}</td>
+          </tr>
+        </table>
+        <input type="submit" value="Login" />
+      </form>
+      {% endblock %}
+    </div>
+    {% include "pages/footer.html" %}
+  </body>
+</html>
