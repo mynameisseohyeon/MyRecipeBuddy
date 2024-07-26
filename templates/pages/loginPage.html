@@ -1,23 +1,22 @@
+<!-- loginPage.html -->
 <!DOCTYPE html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Login</title>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/static/styles.css" rel="stylesheet" />
     <style>
       #loginpage {
-        padding-top: 56px; /* or the height of your navbar */
+        padding-top: 56px;
       }
 
-      /* Alternatively, you can target a specific content container */
       #main-content {
-        margin-top: 80px; /* or the height of your navbar */
+        margin-top: 80px;
       }
     </style>
     <script>
-      // JavaScript function to log the message to the console
       function logLoginAttempt() {
         console.log("사용자가 로그인을 시도하였습니다.");
       }
@@ -49,6 +48,7 @@
         </table>
         <input type="submit" value="Login" />
       </form>
+      <a href="{% url 'signup' %}">회원가입</a>
       {% endblock %}
     </div>
     {% include "pages/footer.html" %}

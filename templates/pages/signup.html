@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <!-- Core theme CSS (includes Bootstrap)-->
+    <link href="/static/styles.css" rel="stylesheet" />
+    <style>
+      #signup {
+        padding-top: 56px;
+      }
+
+      #main-content {
+        margin-top: 80px;
+      }
+    </style>
+  </head>
+  <body id="page-top signup">
+    {% include "pages/header.html" %}
+    <div id="main-content">
+      {% block content %}
+      <h2>signup</h2>
+      <form
+        method="post"
+        action="{% url 'signup' %}"
+        onsubmit="logSignupAttempt()"
+      >
+        {% csrf_token %} {{form.as_p}}
+        <input type="submit" value="Signup" />
+      </form>
+      {% endblock %}
+    </div>
+    {% include "pages/footer.html" %}
+  </body>
+</html>
