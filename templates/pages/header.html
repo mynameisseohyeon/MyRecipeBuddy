@@ -75,6 +75,25 @@
                 >로그인</a
               >
             </li>
+            <!-- 로그인 여부 표시 -->
+            <!-- 로그인 시 login이라는 표시와 함께 이메일 표시 / 로그아웃 시 logout 표시-->
+            {% if user.is_authenticated %}
+            <li class="nav-item">
+              <a
+                class="nav-link me-lg-3"
+                href="{% url 
+'accounts:logout' %}"
+                >{{ user.username }} (logout)</a
+              >
+            </li>
+            {% else %}
+            <li class="nav-item">
+              <a cclass="nav-link me-lg-3" href="{% url 'accounts:login' %}"
+                >login</a
+              >
+            </li>
+            {% endif %}
+            <!-- 로그인 여부 표시 -->
             <li class="nav-item">
               <a class="nav-link me-lg-3" href="#signup">회원가입</a>
             </li>
