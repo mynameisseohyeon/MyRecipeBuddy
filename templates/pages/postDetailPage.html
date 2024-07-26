@@ -15,7 +15,15 @@
     {% if post_list %} {% for post_content in post_list %}
     <hr />
     <h3>{{ post_content.title }}</h3>
+    {% if post_content.image %}
+    <img
+      src="{{ post_content.image.url }}"
+      alt="Post Image"
+      style="width: 200px; height: 200px"
+    />
+    {% endif %}
     <h5>{{ post_content.content }}</h5>
+    <p>Published on: {{ post_content.pub_date }}</p>
     {% endfor %} {% else %}
     <p>content가 없습니다.</p>
     {% endif %} {% include "pages/footer.html" %}

@@ -1,7 +1,10 @@
 from django.db import models
 
-# 장고는 SQL 작성없이 데이터 처리 가능
 class PostContent(models.Model):
- title = models.CharField(max_length=200)
- content = models.TextField()
- pub_date = models.DateField('date published')
+    title = models.CharField(max_length=200)
+    content = models.TextField()
+    pub_date = models.DateField('date published')
+    image = models.ImageField(upload_to='post_images/', blank=True, null=True)
+
+    def __str__(self):
+        return self.title

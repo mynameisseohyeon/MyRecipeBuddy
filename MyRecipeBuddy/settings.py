@@ -46,6 +46,11 @@ INSTALLED_APPS = [
 LOGIN_REDIRECT_URL = '/' 
 LOGOUT_REDIRECT_URL = '/' 
 
+
+# 미디어 파일 관련 설정
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
