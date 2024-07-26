@@ -8,55 +8,74 @@
     <title>게시판 상세 페이지</title>
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="/static/styles.css" rel="stylesheet" />
+    <style>
+      #postDetailPage {
+        padding-top: 56px;
+      }
+
+      #main-content {
+        margin-top: 80px;
+      }
+    </style>
   </head>
-  <body id="page-top">
+  <body id="page-top postDetailPage">
     {% include "pages/header.html" %}
-    <!--게시판 상세-->
-    <h1>게시판 상세 페이지</h1>
-    {% if post_list %} {% for post_content in post_list %}
-    <hr />
-    <h3>{{ post_content.title }}</h3>
-    {% if post_content.image %}
-    <img
-      src="{{ post_content.image.url }}"
-      alt="Post Image"
-      style="width: 200px; height: 200px"
-    />
-    {% endif %}
-    <h5>{{ post_content.content }}</h5>
-    <p>Published on: {{ post_content.pub_date }}</p>
-    <!--댓글 기능-->
-    <section class="mb-5">
-      <div class="card bg-light">
-        <div class="card-body">
-          <form method="post" class="mb-4" action="">
-            {% csrf_token %}
-            <textarea
-              id="content"
-              name="content"
-              class="form-control"
-              rows="3"
-              placeholder="내용을 입력해주세요."
-            ></textarea>
-            <button type="submit" class="btn btn-primary">submit</button>
-          </form>
-          {% for comment in content_list.comment_set.all %}
-          <div class="d-flex">
-            <div class="ms-3">
-              <div class="fw-bold">
-                {{ comment.author.username }} &nbsp&nbsp {{ comment.create_date
-                }}
+    <div id="main-content">
+      <!--게시판 상세-->
+      <div>
+        <h1>게시판 상세 페이지</h1>
+        {% if post_list %} {% for post_content in post_list %}
+        <hr />
+        <h3>{{ post_content.title }}</h3>
+        {% if post_content.image %}
+        <img
+          src="{{ post_content.image.url }}"
+          alt="Post Image"
+          style="width: 200px; height: 200px"
+        />
+        {% endif %}
+        <h5>{{ post_content.content }}</h5>
+        <p>Published on: {{ post_content.pub_date }}</p>
+        <!--댓글 기능-->
+        <section class="mb-5">
+          <div class="card bg-light">
+            <div class="card-body">
+              <form
+                method="post"
+                class="mb-4"
+                action="{% url 'postDetailPage' %}"
+              >
+                {% csrf_token %}
+                <textarea
+                  id="content"
+                  name="content"
+                  class="form-control"
+                  rows="3"
+                  placeholder="내용을 입력해주세요."
+                ></textarea>
+                <button type="submit" class="btn btn-primary">submit</button>
+              </form>
+              {% for comment in content_list.comment_set.all %}
+              <div class="d-flex">
+                <div class="ms-3">
+                  <div class="fw-bold">
+                    {{ comment.author.username }} &nbsp&nbsp {{
+                    comment.create_date }}
+                  </div>
+                  {{ comment.content }}
+                </div>
               </div>
-              {{ comment.content }}
+              <br />
+              {% endfor %}
             </div>
           </div>
-          <br />
-          {% endfor %}
-        </div>
+        </section>
+
+        {% endfor %} {% else %}
+        <p>content가 없습니다.</p>
+        {% endif %}
       </div>
-    </section>
-    {% endfor %} {% else %}
-    <p>content가 없습니다.</p>
-    {% endif %} {% include "pages/footer.html" %}
+    </div>
+    {% include "pages/footer.html" %}
   </body>
 </html>
