@@ -1,0 +1,22 @@
+<!--로그인 했을 경우에만 댓글 수정, 삭제 기능을 사용할 수 있다-->
+
+{% extends 'postDetailPage.html' %} {% block content %}
+<h2>update comment</h2>
+<section class="mb-5">
+  <div class="card bg-light">
+    <div class="card-body">
+      <form
+        method="post"
+        class="mb-4"
+        action="{% url 'comment_update' comment.id %}"
+      >
+        {% csrf_token %}
+        <textarea id="content" name="content" class="form-control" rows="3">
+         {{ form.content.value }}
+        </textarea>
+        <button type="submit" class="btn btn-primary">submit</button>
+      </form>
+    </div>
+  </div>
+</section>
+{% endblock %}
