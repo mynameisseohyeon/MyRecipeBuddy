@@ -24,55 +24,69 @@
       <!--게시판 상세-->
       <div>
         <h1>게시판 상세 페이지</h1>
-        {% if post_list %} {% for post_content in post_list %}
-        <hr />
-        <h3>{{ post_content.title }}</h3>
-        {% if post_content.image %}
-        <img
-          src="{{ post_content.image.url }}"
-          alt="Post Image"
-          style="width: 200px; height: 200px"
-        />
-        {% endif %}
-        <h5>{{ post_content.content }}</h5>
-        <p>Published on: {{ post_content.pub_date }}</p>
-        <!--댓글 기능-->
-        <section class="mb-5">
-          <div class="card bg-light">
-            <div class="card-body">
-              <form
-                method="post"
-                class="mb-4"
-                action="{% url 'postDetailPage' %}"
-              >
-                {% csrf_token %}
-                <textarea
-                  id="content"
-                  name="content"
-                  class="form-control"
-                  rows="3"
-                  placeholder="내용을 입력해주세요."
-                ></textarea>
-                <button type="submit" class="btn btn-primary">submit</button>
-              </form>
-              {% for comment in content_list.comment_set.all %}
-              <div class="d-flex">
-                <div class="ms-3">
-                  <div class="fw-bold">
-                    {{ comment.author.username }} &nbsp&nbsp {{
-                    comment.create_date }}
-                  </div>
-                  {{ comment.content }}
+        {% if post_list %}
+          {% for post_content in post_list %}
+            <hr />
+            <h3>{{ post_content.title }}</h3>
+            {% if post_content.image %}
+              <img
+                src="{{ post_content.image.url }}"
+                alt="Post Image"
+                style="width: 200px; height: 200px"
+              />
+            {% endif %}
+            <h5>{{ post_content.content }}</h5>
+            <p>Published on: {{ post_content.pub_date }}</p>
+            <!--댓글 기능-->
+            <section class="mb-5">
+              <div class="card bg-light">
+                <div class="card-body">
+                  <form
+                    method="post"
+                    class="mb-4"
+                    action="{% url 'postDetailPage' %}"
+                  >
+                    {% csrf_token %}
+                    <textarea
+                      id="content"
+                      name="content"
+                      class="form-control"
+                      rows="3"
+                      placeholder="내용을 입력해주세요."
+                    ></textarea>
+                    <button type="submit" class="btn btn-primary">submit</button>
+                  </form>
+                  {% for comment in post_content.comment_set.all %}
+                    <div class="d-flex">
+                      <div class="ms-3">
+                        <div class="fw-bold">
+                          {{ comment.author.username }} &nbsp;&nbsp; {{ comment.create_date }}
+                          {% if comment.create_date != comment.modify_date %}
+                            / 수정일자: {{ comment.modify_date }}
+                          {% endif %}
+                          {% if request.user == comment.author %}
+                            
+                              href="{% url 'comment_update' comment.id  %}"
+                              class="btn btn-sm btn-outline secondary"
+                            >수정</a>
+                            
+                              href="{% url 'comment_delete' comment.id  %}"
+                              class="btn btn-sm btn-outline secondary"
+                            >삭제</a>
+                          {% endif %}
+                        </div>
+                        {{ comment.content }}
+                      </div>
+                    </div>
+                    <br />
+                  {% endfor %}
                 </div>
               </div>
-              <br />
-              {% endfor %}
-            </div>
-          </div>
-        </section>
-
-        {% endfor %} {% else %}
-        <p>content가 없습니다.</p>
+            </section>
+            <!--댓글 기능-->
+          {% endfor %}
+        {% else %}
+          <p>content가 없습니다.</p>
         {% endif %}
       </div>
     </div>
